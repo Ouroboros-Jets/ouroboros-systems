@@ -1,0 +1,15 @@
+[package]
+name = "e170-systems"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eframe = { version = "0.31.0", features = ["default"] }
+egui_extras = { version = "0.31.0", features = ["default", "image"] }
+env_logger = { version = "0.11.6", default-features = false, features = [
+    "auto-color",
+    "humantime",
+] }
+
+[features]
+gui = []
