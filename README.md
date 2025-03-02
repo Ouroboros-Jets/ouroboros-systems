@@ -40,7 +40,7 @@ After two previous iterations in different languages, I've landed back on Rust f
   - [ ] Communication
 - [ ] Expand upon the C++ repo
   - [ ] Air conditioning system
-  - [ ] FADEC & Enging Simulation
+  - [ ] FADEC & Engine Simulation
   - [ ] Pneumatic System
   - [ ] Random Systems that only serve to enhance frontend of aircraft (like cabin simulation)
 
