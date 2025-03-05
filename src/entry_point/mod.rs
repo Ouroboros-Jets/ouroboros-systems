@@ -1,7 +1,7 @@
 use eframe::egui;
 
 use crate::if_gui;
-use crate::traits::SystemContainer;
+use crate::systems::E170Systems;
 use crate::utils::delta_time::DeltaTime;
 
 pub fn entry_point() {
@@ -31,7 +31,7 @@ pub fn entry_point() {
        }))
 
     }else {
-       println!("Gui is disabled");
+      external_entry_point();
     });
 }
 
@@ -41,21 +41,19 @@ fn external_entry_point() {
 
     let mut delta_time = DeltaTime::new();
 
-    let mut hydraulic_system =
-        SystemContainer::new(crate::systems::hydraulic::HydraulicSystem::new());
+    let mut systems = E170Systems::new();
 
     loop {
         // we will first fetch the simulation data and update our state
 
         // then we will simulate the next tick
         let delta = delta_time.update_time();
-        print!("\x1B[2J\x1B[1;1H");
-        println!("Delta time: {}", &delta);
-
-        hydraulic_system.update(delta);
+        // print!("\x1B[2J\x1B[1;1H");
+        // println!("Delta time: {}", &delta);
 
         // finally we will update the simulation data using the new state, this will allow for a single threaded simulation
         // if we want to use the mt simulation, we just need to have a simulation data writer/reader thread, simulation thread and a communication method (like a channel or a bus)
+        systems.update(delta);
 
         // we will sleep for 16ms to simulate a 60fps loop
         std::thread::sleep(Duration::from_millis(16));
